@@ -1,0 +1,103 @@
+body{
+    font-size: 13px;
+}
+
+h4{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.input-group{
+    background-color: #fff;
+    display: block;
+    margin: 20px 10px;
+    position: relative;
+    width: 600px;
+}
+
+.input-group label{
+    padding: 12px 30px;
+    width: 600px;
+    display: block;
+    text-align: left;
+    color: black;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    border: 1px solid #E2E2E2;
+    overflow: hidden;
+    height: 90px;
+    border-radius: 15px;
+}
+
+.input-group label:after{
+    width: 30px;
+    height: 30px;
+    content: '';
+    border: 1px solid #E2E2E2;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/svg%3E "); 
+    /* 其中的fill='%23FFF'，%23代表#，之後的數值代表色碼，此為點選前讓勾勾呈現跟背景相同的白色，達到勾勾消失的效果 */
+    background-repeat: no-repeat;
+    background-position: 2px 3px;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.input-group label:before{
+    content: '';
+    background-color: #068BF6;
+    position: absolute;
+    left: 50%; /* left, top 都設50%是讓radio重card的中心開始放大到填滿card */
+    top: 50%;
+    transform: translate(-50%, -50%) scale3d(1, 1, 1);
+    opacity: 0; /* radio點擊之前是正常尺寸，並且透明度是0，z軸位置在-1 */
+    z-index: -1;
+}
+
+.input-group input {
+    /* width: 30px;
+    height: 30px;
+    order: 1;
+    z-index: 2;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer; */
+
+    position: absolute;
+    visibility: hidden; /* radio如果要改變樣式，必須先把預設的radio隱藏起來，用background image方式改掉 */
+}
+
+.input-group input:checked ~ label{
+    color: #fff; /* 讓radio checked後card內的文字會變白色 */
+}
+
+.input-group input:checked ~ label:before{
+    transform: translate(-50%, -50%) scale3d(56, 56, 1); /* 將radio放大到填滿card，達到點選後有填色的效果 */
+    opacity: 1;
+}
+
+.input-group input:checked ~ label:after{
+    background-color: white;
+    border-color: #068BF6;
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23068BF6' fill-rule='nonzero'/%3E%3C/svg%3E ");
+    /* 其中的fill='%23FFF'，%23代表#，之後的數值代表色碼，此為點選後讓勾勾呈現#068BF6藍色的效果 */
+}
+
+input[type=radio]:checked + label:before{ /* 這是「將radio放大到填滿card，達到點選後有填色的效果」所需要用到的radio btn */
+    background-color: #068BF6; /* 此藍色就會是點card後填滿的顏色 */
+    width: 17px;
+    height: 17px;
+}
+
+.radio-card{ /* 控制card內文字位置 */
+    margin-left: 50px;
+    margin-top: 25px;
+}
